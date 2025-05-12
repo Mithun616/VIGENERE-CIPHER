@@ -28,9 +28,72 @@ STEP-6: Pick the first letter of the plain text and that of the keyword as the r
 STEP-7: The junction character where these two meet forms the cipher character.
 STEP-8: Repeat the above steps to generate the entire cipher text.
 
+### Step 1:
 
-## PROGRAM
+Design of Vigenere Cipher algorithnm 
 
-## OUTPUT
+### Step 2:
 
-## RESULT
+Implementation using C or pyhton code
+
+### Step 3:
+
+Testing algorithm with different key values. 
+ALGORITHM DESCRIPTION:
+The Vigenere cipher is a method of encrypting alphabetic text by using a series of different Caesar ciphers based on the letters of a keyword. It is a simple form of polyalphabetic substitution.To encrypt, a table of alphabets can be used, termed a Vigenere square, or Vigenere table. It consists of the alphabet written out 26 times in different rows, each alphabet shifted cyclically to the left compared to the previous alphabet, corresponding to the 26 possible Caesar ciphers. At different points in the encryption process, the cipher uses a different alphabet from one of the rows used. The alphabet at each point depends on a repeating keyword.
+
+
+
+## PROGRAM:
+~~~
+def vigenere_encrypt(text, key):
+    encrypted_text = []
+    key_length = len(key)
+    
+    for i, char in enumerate(text.upper()):
+        if char.isalpha():
+            shift = ord(key[i % key_length].upper()) - ord('A')
+            encrypted_char = chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
+            encrypted_text.append(encrypted_char)
+        else:
+            encrypted_text.append(char)
+    
+    return ''.join(encrypted_text)
+
+def vigenere_decrypt(text, key):
+    decrypted_text = []
+    key_length = len(key)
+    
+    for i, char in enumerate(text.upper()):
+        if char.isalpha():
+            shift = ord(key[i % key_length].upper()) - ord('A')
+            decrypted_char = chr((ord(char) - ord('A') - shift + 26) % 26 + ord('A'))
+            decrypted_text.append(decrypted_char)
+        else:
+            decrypted_text.append(char)
+    
+    return ''.join(decrypted_text)
+
+key = "KEY"
+plaintext = "SECURITYLABORATORY"
+ciphertext = vigenere_encrypt(plaintext, key)
+decrypted_text = vigenere_decrypt(ciphertext, key)
+
+print("Key:", key)
+print("Plaintext:", plaintext)
+print("Ciphertext:", ciphertext)
+print("Decrypted Text:", decrypted_text)
+~~~
+## OUTPUT:
+OUTPUT :
+
+Simulating Vigenere Cipher
+
+![Screenshot 2025-03-19 091731](https://github.com/user-attachments/assets/d09eb216-e602-4e5b-b082-5dd1e071b7cb)
+
+Input Message : SecurityLaboratory
+Encrypted Message : NMIYEMKCNIQVVROWXC Decrypted Message : SECURITYLABORATORY
+
+## RESULT:
+The program is executed successfully
+
